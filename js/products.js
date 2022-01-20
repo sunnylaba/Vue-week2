@@ -4,7 +4,8 @@ const path = 'akihico'; // 請加入個人 API Path
 const App = {
     data(){
         return {
-            products: []
+            products: [],
+            tempProduct:{},
         }
     },
     methods: {
@@ -15,7 +16,7 @@ const App = {
             axios.defaults.headers.common['Authorization'] = token;
             axios.post(`${url}/api/user/check`)
             .then((res) => {
-                alert('已驗證成功');
+                this.render();
             })
             .catch((err) => {
                 alert(err.data.message);
@@ -50,7 +51,6 @@ const App = {
     },
     created(){
         this.checkLogin();
-        this.render();
     }
 }
 Vue.createApp(App).mount('#app');
