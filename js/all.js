@@ -3,22 +3,17 @@ const path = 'akihico'; // 請加入個人 API Path
 const App = {
     data() {
         return {
+            user: {
+                username: '',
+                password: '',
+            }
         }
     },
     methods: {
         login(){
-            const emailInput = document.querySelector('#username');
-            const pwInput = document.querySelector('#password');
-            const username = emailInput.value;
-            const password = pwInput.value;
-            
-            const user = {
-              username,
-              password
-            }
     // 發送 api請求
             //console.log(user);
-            axios.post(`${url}/admin/signin`, user)
+            axios.post(`${url}/admin/signin`, this.user)
                 .then((res) => {
                     alert(res.data.message);
                     const {token, expired} = res.data;
